@@ -1,0 +1,485 @@
+===================================
+
+   The Palace (R)
+   UNIX Palace Server
+   Version 4.5.1
+   July, 2000
+
+   Copyright 2000 Communities.com.
+   All rights reserved.
+
+===================================
+
+
+
+
+CONTENTS
+========================
+
+- System Requirements
+- If you are upgrading from a previous release
+- Installing the UNIX Palace Server
+- Undocumented Preferences
+- What's New in this release
+- Known Issues
+- Contact Information
+- Technical Support
+
+
+
+SYSTEM REQUIREMENTS
+===========================================
+
+You need the following to run the Palace UNIX server:
+
+Platforms: The UNIX Palace Server runs on the following
+UNIX platforms:
+
+ - Alpha processor running Digital Unix v4.0A or later. 
+ - Intel processor running Linux kernel 2.0.36 or later
+ - SPARC processor running Solaris 2.5.1 or later
+ - Intel processor running BSDI 3.0 or later
+
+RAM and Disk Space: We recommend a minimum of 64 megs of RAM on your UNIX server 
+and 2 gigs or more of drive space total.  The server itself can run in as few as 
+12 megs of free RAM and 20 megs of drive space.  The server doesn't take up that 
+much drive space, but some additional space will be required for prop file growth, 
+server logs, operating system, swap space, and other necessities.
+
+
+IF YOU ARE UPGRADING FROM A PREVIOUS RELEASE
+============================================
+
+If you are familiar with upgrading PalaceServers over the last several 
+releases, nothing important has changed in this regard.
+
+
+Upgrading from 4.4.1 (the previous release) is easy.
+
+1. Back up your current server installation.
+
+2. Run the installer.
+
+3. Install the new server in a different directory from the last server.
+
+4. Answer all the questions asked during the installation. There is no
+   need to enter the serial number/registration code.
+
+5. Once the installation is finished, cd to installdir/bin/
+
+6. cp pserver /path/to/old/version/bin/
+
+7. cp psfront /path/to/old/version/bin/
+
+8. Start the server.
+
+If you are upgrading from 4.3 or earlier.
+
+1. Make a copy of your current UNIX installation first, to ensure
+   you have a backup. Rename your current Palace directory, and install
+   the new server into a directory with your old Palace directory name.
+   See below for the basic installation process and related notes.
+
+2. Do *not* start the UNIX Palace server yet.
+
+3. Move the new UNIX Palace server's pserver.prefs and pserver.pat files
+   out of the new Palace server's <installdirectory>/palace/psdata
+   directory. Copy your old pserver.dat and pserver.prp files to
+   that location (<installdirectory>/palace/psdata).
+
+4. Review your pserver.conf file for accuracy if you don't use all of
+   the default settings. Replacing the new pserver.conf file with your old
+   one is not recommended since some upgrades do add new fields that
+   would not be in your old pserver.conf.
+
+5. Copy your old media into <installdirectory>/palace/media.
+
+6. Start your new Palace server. Your new pserver.prefs and pserver.pat
+   files are created automatically from your current settings.  Your old
+   pserver.dat file will no longer be used, as the server converted it to
+   the new pserver.prefs and pserver.pat files that it will read and write.
+   You should move the file to another location for backup purposes after
+   starting the server.
+
+
+
+
+INSTALLING THE UNIX PALACE SERVER
+========================================
+The Palace server and its associated files come in a single easy-to-use
+package. Use the following directions to set up your Palace server.
+
+  NOTE: You should be a non-root user to install the Palace server
+        software.
+
+
+To download The Palace, go to the Downloads page of The Palace website
+(www.thepalace.com) and select The Palace Server for UNIX. You can
+choose among several options for downloading:
+
+ - You can download the server executable plus a Palace "template".
+   A template is a look and feel for a Palace, including all sounds,
+   artwork, scripts, and layout. The standard Palace templates include
+   such things as an office and beach resort. Your registration code will
+   be emailed to you.
+
+ - You can also download as many Palace templates to your machine as you
+   like. Then, you can pick and choose among them whenever you want to change
+   the look of your Palace. Use the `roomsfile command to do this.
+
+
+After you download your files to install, do the following:
+
+1. Decompress the Palace Source Files. The Palace files are distributed in
+   tar.gz format. The first step therefore is to decompress the tar image
+   file by running gunzip:
+
+	% gunzip <filename>
+
+   <filename> differs from platform to platform. The general format
+   of <filename> is: server-version-cpu-vendor-OS.tar.gz. For example,
+
+        pserver-4.5.1-i686-unknown-linux.tar.gz
+
+   Gzip/gunzip is the standard compression software used for distributing UNIX
+   software on the Internet. If you don't already have it, you can download
+   source code from ftp://prep.ai.mit.edu/pub/gnu/ or any of the GNU
+   mirror sites. Precompiled versions are available from a number of places,
+   including:    ftp://ftp.netscape.com/pub/unsupported/gnu/.
+
+2. Extract the Palace Files. The preceding step produces a single tar file
+   roughly three megabytes in size. To extract the Palace files from this
+   file, use the tar -xf command. For example:
+
+	% tar -xf pserver-4.5.1-i686-unknown-linux.tar
+
+3. Run the Installation Script. The files obtained from the previous step will
+   include a script called install. This script, which varies
+   slightly from UNIX to UNIX, installs the Palace binaries, scripts and
+   multimedia assets on your computer:
+
+	% ./install
+
+
+
+UNDOCUMENTED PREFERENCES
+==============================================
+
+The Palace server preferences file (pserver.prefs) contain preference
+keywords that you can set with commands. It also contains preferences
+that you should not edit. The latter keywords are undocumented, and
+are not meant to be changed.
+
+
+
+WHAT'S NEW IN THIS RELEASE
+==============================================
+
+The UNIX 4.5.1 Palace Server has many new features. These include:
+
+
+Additional start up script
+Changes to Existing Commands
+New Commands
+New Room Flag
+New Spot Types
+Type 1 Avatars Allowed
+
+
+ADDITIONAL STARTUP SCRIPT
+==============================================
+
+Typically, a user will use bin/start-palace to start up the pserver.
+
+We have provided an additional script for users to make startup of
+a pserver using plugins much simpler.  This script is start-plugin.
+It is identical to start-palace with the addition of a call to load
+the plugin.conf file located in palace/psdata/plugin.conf.  We have
+provided an empty file with comments on how to add the calls to the
+plugins you wish to run in that location.
+
+
+
+CHANGES TO EXISTING COMMANDS
+==============================================
+Several existing commands now have new functionality:
+
+- `kill
+- `track
+- `help
+- `autoannounce
+- All commands with on/off capabilities
+
+The `kill function now kills only for the default time.  If you wish to
+kill for a length of time different from the default, you must now
+use `killfor (see below for details).
+
+The `track function now tracks only for the default time.  If you wish to
+track for a length of time different from the default, you must now
+use `trackfor (see below for details).
+
+The `help function remains the same for non-operators.  For owners and 
+operators, however, `help now displays a "menu" of categories.  For
+example, `help admin shows the administrative commands and `help commandname
+shows information on a given command.  For a full list of all commands
+in alphabetical order, use `help all.
+
+The `autoannounce function still sets the server greeting to "message".
+However, `autoannounce with no "message" now displays the current message.
+To clear the server greeting, type `autoannounce "".
+
+Any commands with on/off capability which used different commands 
+to enable or disable the feature have been modified for 
+consistent behavior. `command shows the status for these types of
+commands; `command on turns the command on; `command off turns the command
+off.
+
+
+NEW COMMANDS
+==============================================
+
+Several new commands have been added:
+
+Type 1 avatar commands:
+- `avatardirectory
+- `avatardiskcachelimit
+- `avatarformats
+- `avatarmaxdimensions
+- `avatarmaxsize
+- `avatarmemorycachelimit
+- `flushavatarcache
+
+Other commands:
+- `forward 
+- `killfor
+- `tock
+- `trackfor
+
+
+TYPE 1 AVATAR COMMANDS
+==============================================
+Type 1 avatars are a single piece avatar, unlike the current prop based
+(or Type 0) system used on Palace Servers.  These avatars can be easily
+imported, worn or shared by TPV users.  The new commands listed below allow
+server operators to control parameters related to Type 1 avatar use.
+
+
+New `avatardirectory command
+----------------------------
+There is a new owner command `avatardirectory which allows owners
+to create a directory in which to store new custom avatars.  The
+syntax is
+             	`avatardirectory pathname
+The path name here cannot be a full path name, but a path name relative 
+to the server root, usually installdir/palace/.  For example, 
+`avatardirectory type1 would use a directory in location: 
+installdir/palace/type1.  Note that the directroy must exist.
+
+
+New `avatardiskcachelimit command
+---------------------------------
+There is a new owner command `avatardiskcachelimit which allows owners
+to specify the maximum disk cache memory (in megabytes) allotted to 
+avatars. The syntax is
+           	`avatardiskcachelimit disklimit
+
+
+New `avatarformats command
+----------------------------
+There is a new owner command `avatarformats which allows owners to
+state which formats they will allow avatars to be created in. The
+syntax is
+           	 `avatarformats formats separated by space
+				e.g. `avatarformats gif jpeg
+
+
+New `avatarmaxdimensions command
+--------------------------------
+There is a new owner command `avatarmaxdimensions which allows owners
+to set the maximum dimensions (in pixels) for a single avatar. 
+The syntax is
+           	`avatarmaxdimensions width height
+
+
+New `avatarmaxsize command
+----------------------------
+There is a new owner command `avatarmaxsize which allows owners to 
+specify the maximum size for a single avatar.  The default and maximum
+size is 14K. The syntax is
+		`avatarmaxsize size
+
+
+New `avatarmemorycachelimit command
+-----------------------------------
+There is a new owner command `avatarmemorycachelimit which allows 
+owners to set the maximum amount of memory cache (in magabytes) 
+devoted to avatars. The syntax is
+		`avatarmemorycachelimit memlimit
+
+
+New `flushavatarcache command
+-----------------------------
+There is a new owner command `flushavatarcache which allows owners
+to flush the avatar cache memory.  The syntax is
+		'flushavatarcache
+
+
+OTHER COMMANDS
+==============================================
+
+New `forward command
+-----------------------------
+There is a new operator command which allows operators to set the server
+to automatically move users from one room to another when the first room
+becomes full.  For example, `forward 86 110 will move users to room
+110 when room 86 becomes full.  You can set this up as a loop, but be
+careful: if all rooms become full, you'll have an endless loop disaster
+on your hands.  The syntax is
+		`forward from to
+
+If you wish to forward the room you are in to another room, the 'from' is
+assumed.  In the previous example, if you were in Room 86, you could just enter
+		`forward 110
+		
+and the equivalent to `forward 86 110 would be used.
+
+
+New `killfor command
+-----------------------------
+There is a new operator command `killfor which allows operators
+to kill (disconnect) a user for variable lengths of time.  
+The syntax is
+		'killfor minutes name
+		
+`kill will only kill a user for the default time period now.  The change was
+made to improve the reliability of the kill command when specifying a variable
+time.
+
+
+New `tock command
+-----------------------------
+There is a new operator command `tock which sends a message to
+the client announcing the servertime.  The syntax is
+		`tock
+		
+This chat can be parsed by a roomscript and used as a standard reference
+for time as well.
+
+
+New `trackfor command
+-----------------------------
+There is a new operator command `trackfor which allows operators
+to track a user for a variable length of time.  The syntax is
+		'trackfor minutes name
+		
+`track will only track a user for the default time period now.  The change was
+made to improve the reliability of the track command when specifying a variable
+time.
+
+
+
+NEW ROOM FLAG
+==================================================
+The client does not yet support authoring this new room flag,
+therefore, in order to use it, you must edit it directly
+into the pat file.
+
+
+NOLOOSEPROPS
+-----------------------------
+Adding NOLOOSEPROPS to the ROOMFLAGS portion of the Room Description
+causes any props dropped by users to vanish instantly, thus reducing
+clutter in your room.
+
+
+
+
+NEW SPOT TYPES
+==================================================
+The client does not yet support authoring these new spot types,
+therefore, in order to use them, you must edit them directly
+into the pat file.
+
+
+MANDATORY
+-----------------------------
+This type means users must be in a MANDATORY area.  It is 
+very similar to NAVAREA, but, because it is server
+enforced, users cannot circumvent the intended behavior.
+
+FORBIDDEN
+-----------------------------
+This type means that users cannot be in the specified area.  It 
+is very similar to DONTMOVEHERE, but, because it is server
+enforced, users cannot circumvent the intended behavior.
+
+LANDINGPAD
+-----------------------------
+This type means that users will enter a room in the specified area.
+
+
+
+TYPE 1 AVATARS ALLOWED
+==================================================
+
+You can now create and store Type 1 avatars, which can be accessed 
+by The Palace Viewer (TPV) users. Type 1 avatars may be
+either .gif or .jpeg files and have flexible size and dimension.
+
+
+
+KNOWN ISSUES
+==================================================
+
+Though the server supports PNG Type 1 avatars, The Palace Viewer does
+not support them at this time.
+
+
+Recent changes were made to the Linux OS kernel networking code which have
+caused problems with the Linux PServer. The code to control IP defragmenting
+was moved from a compiled-in kernel configuration option to the /proc
+filesystem to allow defragmenting to be turned on and off during run-time.
+
+IP defrag is only a necessity for IP masquerading, which allows multiple
+computers to share a single "live" IP address.
+
+For users who require this functionality, it is recommended that they use
+kernel version 2.2.10 or earlier.  These kernel versions do not have the change
+mentioned above and are known to work fine with the Linux PServer.
+
+If users do not require masquerading, it is recommended that they do not
+enable ip_always_defrag in their kernel configuration.  This workaround
+should permit successful operation of the PServer on post 2.2.10 kernels.
+
+
+
+
+CONTACT INFORMATION
+==================================================
+
+   Communities.com
+   10101 N. DeAnza Blvd.
+   Suite 100
+   Cupertino, CA  95014
+
+   Phone: (408) 342-9500
+   Fax:   (408) 777-9200
+   http://www.thepalace.com/
+   
+   
+   
+TECHNICAL SUPPORT
+==================================================
+
+If you have technical support questions, or if you want
+to browse the FAQs or online manuals, post questions to
+Palace discussion groups, or send feedback about the
+product, point your web browser to:
+
+    http://www.thepalace.com/help/
+
+==================================================
+
+
+
+

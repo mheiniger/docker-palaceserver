@@ -1,0 +1,6 @@
+#!/bin/sh
+
+instance=${1:-palace}
+root=${2:-/app}
+mv $root/$instance/logs/pserver.log $root/$instance/logs/pserver`date +%Y%m%d%H%M%S`.log
+kill -HUP `cat $root/$instance/logs/pserver.pid`

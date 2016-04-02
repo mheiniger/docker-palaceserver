@@ -1,0 +1,5 @@
+#!/bin/sh
+
+root=/app
+
+$root/bin/httpd -f $root/conf/httpd.conf

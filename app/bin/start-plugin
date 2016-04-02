@@ -1,0 +1,18 @@
+#!/bin/sh
+
+instance=${1:-palace}
+root=${2:-/app}
+
+if [ -f $root/$instance/logs/pserver.pid ]
+then
+  if kill -0 `cat $root/$instance/logs/pserver.pid` 2> /dev/null
+  then
+    echo "That Palace Server is already running"
+    exit
+  fi
+fi
+
+(
+ $root/bin/pserver -f $root/$instance/psdata/pserver.conf -s $root/$instance/psdata/plugin.conf &
+ echo $! > $root/$instance/logs/pserver.pid
+) > /dev/null 2>&1

@@ -1,0 +1,43 @@
+<HTML>
+  <HEAD>
+	<TITLE> The Palace, Inc. InstantPalace</TITLE>
+  </HEAD>
+  <BODY>
+	<SCRIPT LANGUAGE="JavaScript">
+    <!--
+	  appName = navigator.appName;
+	  appVersion = parseInt(navigator.appVersion);
+	  WIDTH = 762;
+	  HEIGHT = 440;
+	  appletTag = "";
+	  if(appName == "Netscape" && appVersion >=4)
+	  {
+        <!--- Netscape Navigator 4 or higher -->
+		appletTag = "<APPLET code=instantpal.class ARCHIVE=pal_arch.jar width=" + WIDTH + " height=" + HEIGHT + ">";
+	  }
+	  else if ( appName == "Netscape" && appVersion < 4)
+	  {
+        <!--- Netscape Navigator 3 or lower -->
+        appletTag = "<APPLET code=instantpal.class ARCHIVE=pal_arch.zip width=" + WIDTH + " height=" + HEIGHT + ">";
+	  }
+	  else
+	  {
+        <!--- IE or other -->
+        appletTag = "<APPLET code=instantpal.class width=" + WIDTH + " height=" + HEIGHT + ">";
+	  }
+	  document.writeln(appletTag);
+	  document.writeln("<PARAM name=cabbase value=pal_arch.cab>");
+      document.writeln("<PARAM name=picfolder value=PUBBASEpictures/>");
+      document.writeln("<PARAM name=soundfolder value=PUBBASEinstantpalace/sounds/>");
+	  document.writeln("<PARAM name=palaceport value=PORT>");
+      document.writeln("<PARAM name=appletdata value=PUBBASEinstantpalace/appletdata/>");
+      document.writeln("<PARAM name=avatars    value=PUBBASEavatars/>");
+	  document.writeln("Sorry, your browser must be Java-enabled to run InstantPalace.");
+	  document.writeln("</APPLET>");
+    // -->
+    </SCRIPT>
+    <NOSCRIPT>
+      Sorry, your browser must be Java-enabled to run InstantPalace
+    </NOSCRIPT>
+  </BODY>
+</HTML>

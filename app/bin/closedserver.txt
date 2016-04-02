@@ -1,0 +1,97 @@
+CLOSED SERVER
+=============
+
+The Palace closed server allows only clients providing the correct username and 
+password to enter. Clients will be allowed a variable number of attempts 
+(authattempts). After those attempts, if a valid username and password have not 
+been entered, the client will receive an error message.
+
+The closed server consists of the server, an authentication daemon and the 
+client. The Palace client must support the closed server, or they will not be 
+able to connect. 
+
+GOD COMMANDS
+=============
+  
+    `security authhost:authport [AUTHATTEMPTS]
+    `securesite on|off  
+
+To specify the server running the authentication daemon, and the authattempts, 
+for The Palace server, type:
+`security hostpc.com:2345 3
+
+To activate the security feature after you have specified the daemon, type: 
+`securesite on 
+
+SCRIPT COMMANDS:
+===============
+
+AUTHHOST    In a Unix server this is the host used for authentication. Use 
+        a DNS name or IP address to refer to the authentication 
+        daemon.
+AUTHPORT    The authentication host’s port. 
+AUTHATTEMPTS    Number of incorrect attempts to allow before disconnecting
+
+The external authentication daemon runs on AUTHHOST, listening on AUTHPORT for a 
+connection.
+
+AUTHENTICATOR.PL
+=================
+
+The Palace authentication daemon is a PERL script distributed in tar.gz format.  
+Run gunzip to uncompress the tar image file. 
+
+    % gunzip authenticator.tar.gz
+
+The preceding step produces a single file authenticator.tar. To extract the 
+authentication source file, use tar with the extract (-x) and the filename (-f) 
+options. For example:
+
+    % tar -xf authenticator.tar
+
+To run the authentication daemon, first navigate to the directory where you have 
+installed authenticator.pl. Type: 
+
+    % perl authenticator.pl &
+
+The default port for the authentication daemon is 2345. You can change the 
+default port by editing the authenticator.pl script. 
+
+Set the usernames and passwords of people to connect to your server in the 
+palace_passwd text file. These values should be set in the format specified 
+below. The color field will be used to implement groups in later versions. 
+
+USERNAME:PASSWORD:BLUE
+
+
+USING ANOTHER AUTHENTICATION DAEMON
+===================================
+
+You may use another authentication daemon, but it must respond to the following 
+parameters:
+
+After querying the client for a username and password, the server connects to 
+the authentication daemon and sends a message in the following format:
+    <number>:<number>:<username>:<password>\n
+The numbers should be saved, but not interpreted; They are used by The Palace 
+server to match responses with requests. The password is transmitted with the 
+case preserved.  The line is terminated with a newline.
+
+The authentication daemon should verify the username and password and respond 
+with:
+    <length byte><number>:<number>:<auth>:<groups>
+The length byte is the length of the rest of the response.  The first two 
+numbers are the identification numbers supplied with the request. 
+Auth should be '1' if the user is authorized, '0' otherwise.  
+Groups will include a colon-separated list of groups the user is a member of. 
+The groups will only appear if the user is authorized. Full group implementation 
+will appear in future versions.
+
+USING AUTHENTICATION FROM THE CLIENT
+====================================
+The closed server-enabled client will present the user with a dialog box for
+entering their username and password.  Web authors can also specify this 
+information from within the standard palace URL specification as follows:
+
+    palcace://username:password@host:port
+

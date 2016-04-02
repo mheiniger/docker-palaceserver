@@ -1,0 +1,6 @@
+#!/bin/sh
+
+root=${1:-/app}
+
+$root/bin/start-httpd
+$root/bin/start-palaces $root

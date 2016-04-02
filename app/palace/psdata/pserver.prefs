@@ -1,0 +1,21 @@
+; Server Prefs
+;
+SERVERNAME "Docker Hosted Palace"
+OWNERPASSWORD "5\8DT\85E"
+OPERATORPASSWORD "\0Cby.\8BD\8FE"
+PERMISSIONS 0x2E7F    
+DEATHPENALTY 120
+MAXOCCUPANCY 9999
+ROOMOCCUPANCY 24
+MINFLOODEVENTS 200
+PURGEPROPDAYS 21
+MAXSESSIONID 10000
+PICFOLDER "media/"
+SYSOP "Docker Hosted Palace Owner"
+URL "palace://docker.local:9998"
+HTTP_URL "http://docker.local:9990/palace/media/"
+AVATAR_URL "http://docker.local:9990/palace/avatars/"
+MACHINETYPE "Unix"
+YPADDR "directory.thepalace.com"
+ROOMSFILE "psdata/pserver.pat"
+END

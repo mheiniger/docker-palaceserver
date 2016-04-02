@@ -1,0 +1,8 @@
+#!/bin/sh
+
+root=${1:-/app}
+
+cat $root/conf/palaces | while read instance
+do
+  $root/bin/start-palace $instance $root
+done
