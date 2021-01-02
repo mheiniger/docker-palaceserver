@@ -1,0 +1,8 @@
+version: "3.9"
+   
+services:
+  palaceserver:
+    build: .
+    ports:
+      - "9998:9998"
+      - "9990:9990"
