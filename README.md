@@ -13,3 +13,6 @@ The original installer asked to agree to this: [License](license.txt), so only c
 
 ## Connect
 Start your Palace client and connect to [palace://localhost:9998](palace://localhost:9998)
+
+## Using docker-compose
+`docker-compose up --build`
