@@ -1,5 +1,5 @@
 #!/bin/sh
-
+set -x
 instance=${1:-palace}
 root=${2:-/app}
 

@@ -1,5 +1,0 @@
-AuthType Basic
-require valid-user
-AuthName Palace1
-AuthPalaceScript /apppalace/psdata/pserver.dat
-AuthPalaceLevel administrator

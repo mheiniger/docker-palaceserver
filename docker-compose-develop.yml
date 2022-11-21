@@ -1,0 +1,51 @@
+version: "3.9"
+
+services:
+  palace:
+    build: .
+    image: mheiniger/palaceserver:latest-palace
+    ports:
+      - "9998:9998"
+    volumes:
+      # user manageable content
+      - $PWD/run/media:/app/run/media
+      - $PWD/run/avatars:/app/run/avatars
+      - $PWD/run/psdata:/app/run/psdata
+      - $PWD/run/webservice:/app/run/webservice
+      # debugging
+      # - $PWD/.vscode:/app/run/webservice/.vscode
+      - $PWD/run/logs:/app/run/logs
+    depends_on:
+      - web
+  web:
+    build: apache
+    image: mheiniger/palaceserver:latest-web
+    volumes:
+      # user manageable content
+      - $PWD/run/media:/app/run/media
+      - $PWD/run/avatars:/app/run/avatars
+      - $PWD/run/webservice:/app/run/webservice
+      # runtime storage
+      - propStorage:/app/run/webservice/propStorage
+      # debugging
+      - $PWD/.vscode:/app/run/webservice/.vscode
+    ports:
+      - "9990:9990"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      XDEBUG_MODE: develop,debug
+      XDEBUG_CONFIG:
+        client_host=host.docker.internal
+        start_with_request=yes
+
+  # devcontainer:
+  #   image: alpine
+  #   volumes: 
+  #     - propStorage:/var/www/html/palace/media/webservice/propStorage
+  #     # debugging
+  #     - $PWD/app/palace/webservice:/var/www/html/palace/media/webservice
+  #     - $PWD/.vscode:/var/www/html/palace/media/webservice/.vscode
+
+volumes:
+  propStorage:
