@@ -1,4 +1,4 @@
-FROM ubuntu:14.04.4
+FROM ubuntu:14.04
 
 LABEL org.opencontainers.image.source=https://github.com/mheiniger/docker-palaceserver
 
