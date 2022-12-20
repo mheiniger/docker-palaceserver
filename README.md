@@ -5,14 +5,24 @@ Run "The Palace Server" as a Docker container.
 ## Read the the original licence
 The original installer asked to agree to this: [License](license.txt), so only continue if you agree.
 
-## Build it
-`docker build -t palaceserver .`
+## optional for development: Build it
+`docker-compose build`
 
 ## Run it
-`docker run -p 9998:9998 -p 9990:9990 --name pserver palaceserver`
+`docker-compose up`
 
 ## Connect
-Start your Palace client and connect to [palace://localhost:9998](palace://localhost:9998)
+Start your Palace client and connect to [palace://127.0.1.1:9998](palace://127.0.1.1:9998)
 
-## Using docker-compose
-`docker-compose up --build`
+On the first start you will be connected to a default palace.
+
+## What do after the first start
+
+* In your working directory, it now added a folder "run" which contains folder you can customize to make the palace your own.
+* If you want to replace the pserver.pat file with the rooms, you need to stop the server first (ctrl-c).
+* You can log in to your Palace with the default passwords: "owner" or "operator"
+* Please change the default passwods with:
+    ```
+    `ownerpassword <password>
+    `operatorpassword <password>
+    ```
