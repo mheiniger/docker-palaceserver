@@ -10,11 +10,11 @@ services:
       - "directory.thepalace.com:54.39.238.143" # redirect to the newer https://www.thepalaceportal.com/
     volumes:
       # user manageable content
-      - $PWD/run/media:/app/run/media
-      - $PWD/run/avatars:/app/run/avatars
-      - $PWD/run/psdata:/app/run/psdata
-      - $PWD/run/webservice:/app/run/webservice
-      - $PWD/run/logs:/app/run/logs
+      - ${PWD:?please set an absolute path for content storage}/run/media:/app/run/media
+      - ${PWD:?}/run/avatars:/app/run/avatars
+      - ${PWD:?}/run/psdata:/app/run/psdata
+      - ${PWD:?}/run/webservice:/app/run/webservice
+      - ${PWD:?}/run/logs:/app/run/logs
     depends_on:
       - web
   web:
@@ -22,9 +22,9 @@ services:
     build: apache
     volumes:
       # user manageable content
-      - $PWD/run/media:/app/run/media
-      - $PWD/run/avatars:/app/run/avatars
-      - $PWD/run/webservice:/app/run/webservice
+      - ${PWD:?please set an absolute path for content storage}/run/media:/app/run/media
+      - ${PWD:?}/run/avatars:/app/run/avatars
+      - ${PWD:?}/run/webservice:/app/run/webservice
       # runtime storage
       - propStorage:/app/run/webservice/propStorage
     ports:

@@ -21,8 +21,12 @@ On the first start you will be connected to a default palace.
 * In your working directory, it now added a folder "run" which contains folder you can customize to make the palace your own.
 * If you want to replace the pserver.pat file with the rooms, you need to stop the server first (ctrl-c).
 * You can log in to your Palace with the default passwords: "owner" or "operator"
-* Please change the default passwods with:
+* Please change the default passwords with:
     ```
     `ownerpassword <password>
     `operatorpassword <password>
     ```
+
+## When running on a server like Portainer etc.
+
+* Make sure you define the $PWD variable and point it to a path where you want to store your palace data. For example `/home/<your-username>/dockerData/palace9998`

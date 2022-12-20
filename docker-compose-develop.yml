@@ -10,13 +10,13 @@ services:
       - "directory.thepalace.com:54.39.238.143" # redirect to the newer https://www.thepalaceportal.com/
     volumes:
       # user manageable content
-      - $PWD/run/media:/app/run/media
-      - $PWD/run/avatars:/app/run/avatars
-      - $PWD/run/psdata:/app/run/psdata
-      - $PWD/run/webservice:/app/run/webservice
+      - ${PWD:?please set an absolute path for content storage}/run/media:/app/run/media
+      - ${PWD:?}/run/avatars:/app/run/avatars
+      - ${PWD:?}/run/psdata:/app/run/psdata
+      - ${PWD:?}/run/webservice:/app/run/webservice
       # debugging
-      # - $PWD/.vscode:/app/run/webservice/.vscode
-      - $PWD/run/logs:/app/run/logs
+      # - ${PWD:?}/.vscode:/app/run/webservice/.vscode
+      - ${PWD:?}/run/logs:/app/run/logs
     depends_on:
       - web
   web:
@@ -24,13 +24,13 @@ services:
     image: mheiniger/palaceserver-web
     volumes:
       # user manageable content
-      - $PWD/run/media:/app/run/media
-      - $PWD/run/avatars:/app/run/avatars
-      - $PWD/run/webservice:/app/run/webservice
+      - ${PWD:?please set an absolute path for content storage}/run/media:/app/run/media
+      - ${PWD:?}/run/avatars:/app/run/avatars
+      - ${PWD:?}/run/webservice:/app/run/webservice
       # runtime storage
       - propStorage:/app/run/webservice/propStorage
       # debugging
-      - $PWD/.vscode:/app/run/webservice/.vscode
+      - ${PWD:?}/.vscode:/app/run/webservice/.vscode
     ports:
       - "9990:9990"
     extra_hosts:
@@ -46,8 +46,8 @@ services:
   #   volumes: 
   #     - propStorage:/var/www/html/palace/media/webservice/propStorage
   #     # debugging
-  #     - $PWD/app/palace/webservice:/var/www/html/palace/media/webservice
-  #     - $PWD/.vscode:/var/www/html/palace/media/webservice/.vscode
+  #     - ${PWD:?}/app/palace/webservice:/var/www/html/palace/media/webservice
+  #     - ${PWD:?}/.vscode:/var/www/html/palace/media/webservice/.vscode
 
 volumes:
   propStorage:
