@@ -22,8 +22,10 @@ jobs:
       matrix:
         include:
           - dockerfile: ./Dockerfile
+            context: .
             image: docker.io/mheiniger/palaceserver
           - dockerfile: ./apache/Dockerfile
+            context: apache
             image: docker.io/mheiniger/palaceserver-web
     permissions:
       contents: read
@@ -63,7 +65,7 @@ jobs:
         id: build-and-push-palace
         uses: docker/build-push-action@ac9327eae2b366085ac7f6a2d02df8aa8ead720a
         with:
-          context: .
+          context: ${{ matrix.context }}
           file: ${{ matrix.dockerfile }}
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
