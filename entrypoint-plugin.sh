@@ -36,7 +36,7 @@ chown -R palace:palace /app/run
 
 su palace
 
-sudo --user=palace /app/bin/pserver -f /app/run/psdata/pserver.conf &
+sudo --user=palace /app/bin/pserver -f /app/run/psdata/pserver.conf -s /app/run/psdata/plugin.conf &
  echo $! > /app/run/logs/pserver.pid
 
 tail -f /app/palace/logs/pserver.log
