@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   palace:
-    image: mheiniger/palaceserver:latest-palace
+    image: mheiniger/palaceserver
     build: .
     ports:
       - "9998:9998"
@@ -16,7 +16,7 @@ services:
     depends_on:
       - web
   web:
-    image:  mheiniger/palaceserver:latest-web
+    image:  mheiniger/palaceserver-web
     build: apache
     volumes:
       # user manageable content
