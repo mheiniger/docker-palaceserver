@@ -6,6 +6,8 @@ services:
     build: .
     ports:
       - "9998:9998"
+    extra_hosts: 
+      - "directory.thepalace.com:54.39.238.143" # redirect to the newer https://www.thepalaceportal.com/
     volumes:
       # user manageable content
       - $PWD/run/media:/app/run/media
