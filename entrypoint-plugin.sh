@@ -35,9 +35,6 @@ chown -R palace:palace /app/run
 #     cp -r /app/palace/logs/. /app/run/logs/
 # fi
 
-su palace
-
-sudo --user=palace /app/bin/pserver -f /app/run/psdata/pserver.conf -s /app/run/psdata/plugin.conf &
- echo $! > /app/run/logs/pserver.pid
-
-tail -f /app/run/logs/pserver.log
+echo "starting the palace..."
+sudo --user=palace bash -c "/app/bin/pserver -f /app/run/psdata/pserver.conf -s /app/run/psdata/plugin.conf & 
+    echo $! > /app/run/logs/pserver.pid && sleep 2 && tail -f /app/run/logs/pserver.log"
