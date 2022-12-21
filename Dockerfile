@@ -17,4 +17,4 @@ RUN groupadd --gid 1000 palace \
 RUN chown -R palace:palace app/palace/logs/
 RUN chown -R palace:palace app/palace/avatars
 
-CMD ["/app/entrypoint.sh"]
+CMD ["/app/entrypoint-plugin.sh"]
