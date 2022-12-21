@@ -4,6 +4,7 @@ services:
   palace:
     image: "mheiniger/palaceserver"
     build: .
+    init: true
     ports:
       - "9998:9998"
     extra_hosts: 
