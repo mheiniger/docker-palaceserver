@@ -1,2 +1,2 @@
 app/palace/webservice/storage/*
-run/*
+run/*/

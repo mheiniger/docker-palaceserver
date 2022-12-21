@@ -1,0 +1,1 @@
+This is the folder where user-manageable content will be placed after the first startup.
