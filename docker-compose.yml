@@ -5,6 +5,7 @@ services:
     image: "mheiniger/palaceserver"
     build: .
     init: true
+    restart: unless-stopped
     ports:
       - "9998:9998"
     extra_hosts: 
@@ -21,6 +22,7 @@ services:
   web:
     image:  "mheiniger/palaceserver-web"
     build: apache
+    restart: unless-stopped
     volumes:
       # user manageable content
       - ${PWD:?please set an absolute path for content storage}/run/media:/app/run/media
