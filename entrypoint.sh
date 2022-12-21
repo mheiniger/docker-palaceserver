@@ -16,6 +16,7 @@ fi
 if [ -z "$(ls -A /app/run/logs)" ]; then
     mkdir -p /app/run/logs/
     touch pserver.log
+    chown -R palace:palace /app/run/logs
 fi
 
 if [ -z "$(ls -A /app/run/avatars)" ]; then
